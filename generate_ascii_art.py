@@ -15,7 +15,6 @@ def find_best_match(block_factor, glyphs):
 	return best_match
 
 def main():
-	print(len(sys.argv))
 	if len(sys.argv) < 3 or len(sys.argv) > 4:
 		print("Usage: python generate_ascii_art.py <path to glyphs directory> <path to image> [<resolution>]")
 		print("The first argument should be a path to a folder containing images of individual ascii characters, of which the name is the ascii code.")
