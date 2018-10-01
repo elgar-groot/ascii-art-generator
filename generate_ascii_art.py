@@ -6,7 +6,7 @@ import os
 
 
 def find_best_match(block_factor, glyphs):
-	best_match_score = sys.maxint
+	best_match_score = sys.maxsize
 	for ascii_code in glyphs:
 		score = abs(block_factor - glyphs[ascii_code])
 		if score < best_match_score: # lower score is better
@@ -57,8 +57,8 @@ def main():
 	# img.show()
 
 	(imgx,imgy) = img_array.shape
-	rows = imgx/blocksizex
-	columns = imgy/blocksizey
+	rows = int(imgx/blocksizex)
+	columns = int(imgy/blocksizey)
 	# print("Image size: {}".format(img_array.shape))
 	# print("rows: {}, columns: {}".format(rows, columns))
 
@@ -67,7 +67,7 @@ def main():
 	for row in range(0,imgx-blocksizex,blocksizex):
 		for col in range(0,imgy-blocksizey,blocksizey):
 			block = img_array[row:row+blocksizex, col:col+blocksizey]
-			image_avgs[row/blocksizex, col/blocksizey] = np.average(block)
+			image_avgs[int(row/blocksizex), int(col/blocksizey)] = np.average(block)
 
 	image_tmp = image_avgs - np.min(image_avgs)
 	image_norm = image_tmp / np.max(image_tmp)
